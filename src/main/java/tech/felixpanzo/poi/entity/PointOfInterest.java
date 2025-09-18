@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_point_of_interest")
-public class PoitOfInterest {
+public class PointOfInterest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +14,10 @@ public class PoitOfInterest {
     private Long x;
     private Long y;
 
-    public PoitOfInterest() {
+    public PointOfInterest() {
     }
 
-    public PoitOfInterest(String name, Long x, Long y) {
+    public PointOfInterest(String name, Long x, Long y) {
         this.name = name;
         this.x = x;
         this.y = y;
