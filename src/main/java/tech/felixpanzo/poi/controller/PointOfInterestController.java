@@ -9,6 +9,8 @@ import tech.felixpanzo.poi.controller.dto.CreatePointOfInterest;
 import tech.felixpanzo.poi.entity.PointOfInterest;
 import tech.felixpanzo.poi.repository.PointOfInterestRepository;
 
+import java.util.List;
+
 @RestController
 public class PointOfInterestController {
     private final PointOfInterestRepository repository;
@@ -32,6 +34,20 @@ public class PointOfInterestController {
 
         var body = repository.findAll(PageRequest.of(page, pageSize));
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(body);
+    }
+
+    @GetMapping("/near-me")
+    public ResponseEntity<List<PointOfInterest>> nearMe(@RequestParam("x") Long x,
+                                                        @RequestParam("y") Long y,
+                                                        @RequestParam("dmax") Long dmax){
+        var xMin = x - dmax;
+        var xMax = x + dmax;
+        var yMin = y - dmax;
+        var yMax = y + dmax;
+
+        var body = repository.findNeaMe(xMin, xMax, yMin, yMax);
+
+        return ResponseEntity.ok(body);
     }
 }
