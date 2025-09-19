@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PointOfInterestRepository extends JpaRepository<PointOfInterest, Long> {
     @Query("""
-            SELECT p FROM PointOfInterest
+            SELECT p FROM PointOfInterest p
             WHERE (p.x >= :xMin AND p.x <= :xMax AND p.y >= :yMin AND p.y <= :yMax)
             """)
 
